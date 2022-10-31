@@ -373,6 +373,42 @@ describe('#Equinox', function () {
     assert.deepStrictEqual(fixResult(res), exp)
   })
 
+  it('september equinox in Asia/Tokyo 2015', function () {
+    const date = new Equinox({ season: 'september', timezone: 'Asia/Tokyo' })
+    const res1 = date.inYear(2015)
+    const res = res1.get()
+    const exp = [{
+      date: '2015-09-23 00:00:00',
+      start: 'wed 2015-09-23 00:00',
+      end: 'thu 2015-09-24 00:00'
+    }]
+    assert.deepStrictEqual(fixResult(res), exp)
+  })
+
+  it('september equinox in Asia/Tokyo 2021', function () {
+    const date = new Equinox({ season: 'september', timezone: 'Asia/Tokyo' })
+    const res1 = date.inYear(2021)
+    const res = res1.get()
+    const exp = [{
+      date: '2021-09-23 00:00:00',
+      start: 'thu 2021-09-23 00:00',
+      end: 'fri 2021-09-24 00:00'
+    }]
+    assert.deepStrictEqual(fixResult(res), exp)
+  })
+
+  it('september equinox in +09:00 2021', function () {
+    const date = new Equinox({ season: 'september', timezone: '+09:00' })
+    const res1 = date.inYear(2021)
+    const res = res1.get()
+    const exp = [{
+      date: '2021-09-23 00:00:00',
+      start: 'thu 2021-09-23 00:00',
+      end: 'fri 2021-09-24 00:00'
+    }]
+    assert.deepStrictEqual(fixResult(res), exp)
+  })
+
   it('march equinox in +01:00', function () {
     const date = new Equinox({ season: 'march', timezone: '+01:00' })
     const res = date.inYear(2015).get()
@@ -385,6 +421,17 @@ describe('#Equinox', function () {
   })
 
   it('3 days after september equinox', function () {
+    const date = new Equinox({ season: 'september', offset: 3 })
+    const res = date.inYear(2015).get()
+    const exp = [{
+      date: '2015-09-26 00:00:00',
+      start: 'sat 2015-09-26 00:00',
+      end: 'sun 2015-09-27 00:00'
+    }]
+    assert.deepStrictEqual(fixResult(res), exp)
+  })
+  
+  it('3 days after september equinox tokyo', function () {
     const date = new Equinox({ season: 'september', offset: 3 })
     const res = date.inYear(2015).get()
     const exp = [{
